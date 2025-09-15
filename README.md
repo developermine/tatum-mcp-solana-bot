@@ -10,11 +10,6 @@ A zero‑build, This bot detects newly created tokens associated with the **DBC 
 
 * 🔌 **MCP over stdio**: Launches `@tatumio/blockchain-mcp` via `npx` and talks to it with `@modelcontextprotocol/sdk`.
 * 🔎 **Program watcher**: Polls `getSignaturesForAddress` for the DBC program (configurable).
-* 🧾 **Transaction parsing**: Fetches `getTransaction` and scans logs for token‑creation clues:
-
-  * `Instruction: InitializeVirtualPoolWithSplToken`
-  * `create token metadata`
-  * `Instruction: MintTo`
 * 🪙 **Mint discovery**: Uses `postTokenBalances` to extract the mint address (excluding well‑known system/program mints).
 * 📈 **Bonding curve detection**: Identifies the pool account by layout size (default heuristic: `space === 424`) and fetches its SOL balance.
 * 👤 **Minter hygiene**: Reads the minter's SOL balance; optionally checks against a malicious-address service.
@@ -235,8 +230,7 @@ PROGRAM_ID=dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "tsx src/index.ts",
-    "dev": "tsx watch src/index.ts"
+    "start": "tsx src/bot.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.4.0",
